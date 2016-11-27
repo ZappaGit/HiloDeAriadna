@@ -1,9 +1,10 @@
 {
-    "name": "hiloDeAriadna",
-    "version": "0.0.1",
-    "private": true,
-    "dependencies": {
-      "express": "^4.13.3",
-      "express-handlebars": "^2.0.1"      
-    }
+  "name": "hiloDeAriadna",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "^4.13.3",
+    "express-handlebars": "^2.0.1",
+    "mongoose": "~4.7.0"
+  }
 }
