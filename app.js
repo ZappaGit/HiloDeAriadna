@@ -1,34 +1,44 @@
 var express = require('express');
 var exphbs  = require('express-handlebars');
 var router =  require('./config/routes');
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
 
 function logMiddleware (req, res, next) {
   console.log('la url que nos pidio: ',req.url);
   next();
 }
 
-mongoose.set('debug', true);
-mongoose.connect('mongodb://localhost/hilodeariadna', function (err) {
-  if (err) throw err;
+var app = express();
+app.listen(8000, function () {
+  console.log("Esperando requests en el puerto 8000");
+});
 
-  var app = express();
 
-  app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-  app.set('view engine', 'handlebars');
-  app.use(logMiddleware);
-  app.use(express.static('public'));
+//mongoose.set('debug', true);
+//mongoose.connect('mongodb://localhost/hilodeariadna', function (err) {
+    ////  if (err){
+    //console.log("error conectando a la BD");
+  //  throw err;
+  //}
 
-  if (!router) {
-    debug('no routes defined on app');
-    done();
-    return;
-  }
+//  var app = express();
 
-  router(app);
+//  app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+//  app.set('view engine', 'handlebars');
+//  console.log(app.get('view engine'));
+//  app.use(logMiddleware);
+//  app.use(express.static('public'));
+
+//  if (!router) {
+//    debug('no routes defined on app');
+//    done();
+//    return;
+//  }
+
+//  router(app);
 
   // Decimos en que puerto queremos escuchar (el 8000)
-  app.listen(8000, function () {
-    console.log("Esperando requests en el puerto 8000");
-  });
-});
+//  app.listen(8000, function () {
+//    console.log("Esperando requests en el puerto 8000");
+//  });
+//});
