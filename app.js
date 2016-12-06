@@ -5,6 +5,11 @@ var router =  require('./config/routes');
 
 var app = express();
 
+function logMiddleware (req, res, next) {
+  console.log('la url que nos pidio: ',req.url);
+  next();
+}
+
 
 app.set('port', (process.env.PORT || 5000));
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
@@ -14,10 +19,15 @@ app.use(logMiddleware);
 app.use(express.static('public'));
 
 
-function logMiddleware (req, res, next) {
-  console.log('la url que nos pidio: ',req.url);
-  next();
+if (!router) {
+   debug('no routes defined on app');
+   done();
+   return;
 }
+
+router(app);
+
+
 
 app.listen(app.get('port'), function() {
   console.log("HOla heroku");
