@@ -7,6 +7,10 @@
     "express-handlebars": "^2.0.1",
     "mongoose": "~4.7.0"
   },
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
   "repository": {
   "type": "git",
   "url": "https://github.com/ZappaGit/HiloDeAriadna"
