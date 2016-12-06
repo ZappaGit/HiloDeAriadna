@@ -1,3 +1,5 @@
+//Hilo de ariadna app
+
 var express = require('express');
 var exphbs  = require('express-handlebars');
 var router =  require('./config/routes');
