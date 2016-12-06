@@ -3,14 +3,20 @@ var exphbs  = require('express-handlebars');
 var router =  require('./config/routes');
 //var mongoose = require('mongoose');
 
+var app = express();
+
+
+app.set('port', (process.env.PORT || 5000));
+
+
 function logMiddleware (req, res, next) {
   console.log('la url que nos pidio: ',req.url);
   next();
 }
 
-var app = express();
-app.listen(8000, function () {
-  console.log("Esperando requests en el puerto 8000");
+app.listen(app.get('port'), function() {
+  console.log("HOla heroku");
+  console.log('Node app is running on port', app.get('port'));
 });
 
 
