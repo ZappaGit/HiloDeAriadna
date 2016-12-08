@@ -1,5 +1,4 @@
 //Hilo de ariadna app
-
 var express = require('express');
 var exphbs  = require('express-handlebars');
 var router =  require('./config/routes');
@@ -32,6 +31,7 @@ router(app);
 
 
 app.listen(app.get('port'), function() {
+  console.log("working in hda layouts");
   console.log("HOla heroku");
   console.log('Node app is running on port', app.get('port'));
 });
