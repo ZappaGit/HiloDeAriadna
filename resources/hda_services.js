@@ -11,7 +11,7 @@ var errors = require('../controllers/errors');
 
 ////////////// EXPOSED API //////////////
 
-router.get('/services', hda.saludo, getServices);
+router.get('/services', getServices, hda.saludo);
   // Muestra las tareas pendientes, noten que no llama al middleware
   // contarPendientes porque la cuenta ya la hace buscarPendientes
   //app.get('pendientes', [_.partial(setearVista, 'pendientes', buscarPendientes, imprimirLista)]);
@@ -32,6 +32,7 @@ module.exports = router;
 
 function getServices(req, res, next) {
   console.log("getServices");
+  next();
 }
 
 function getService(req, res, next) {
