@@ -6,6 +6,14 @@ var router =  require('./config/routes');
 
 var app = express();
 
+
+//HDA own logic
+var mainConfig = require('./config/main');
+    //logger = require('./utils/logger'),
+    //persistence = require('./utils/persistence'),
+    //scheduler = require('./utils/scheduler'),
+    //broadcaster = require('./utils/broadcaster'),
+    
 function logMiddleware (req, res, next) {
   console.log('la url que nos pidio: ',req.url);
   next();
@@ -20,13 +28,13 @@ app.use(logMiddleware);
 app.use(express.static('public'));
 
 
-if (!router) {
-   debug('no routes defined on app');
-   done();
-   return;
-}
+//if (!router) {
+  // debug('no routes defined on app');
+  // done();
+  // return;
+//}
 
-router(app);
+//router(app);
 
 
 
