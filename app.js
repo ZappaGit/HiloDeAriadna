@@ -2,10 +2,12 @@
 var express = require('express');
 var exphbs  = require('express-handlebars');
 var router =  require('./config/routes');
+var bodyParser = require('body-parser');
+var expressValidator = require('express-validator');
 //var mongoose = require('mongoose');
 
 var app = express();
-
+var http = require('http').Server(app);
 
 //HDA own logic
 var mainConfig = require('./config/main');
@@ -13,24 +15,30 @@ var mainConfig = require('./config/main');
     //persistence = require('./utils/persistence'),
     //scheduler = require('./utils/scheduler'),
     //broadcaster = require('./utils/broadcaster'),
-    
+
 function logMiddleware (req, res, next) {
   console.log('la url que nos pidio: ',req.url);
   next();
 }
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(logMiddleware);
+app.use(express.static('public'));
+app.use(expressValidator());
+app.use(bodyParser.json());
+
+app.use('/api', require('./resources/hda_services'));
 
 
 app.set('port', (process.env.PORT || 5000));
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 console.log(app.get('view engine'));
-app.use(logMiddleware);
-app.use(express.static('public'));
 
 
 //if (!router) {
   // debug('no routes defined on app');
-  // done();
+    // done();
   // return;
 //}
 
